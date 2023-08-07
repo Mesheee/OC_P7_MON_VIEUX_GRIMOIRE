@@ -14,8 +14,7 @@ const normalizePort = val => {
   return false;
 };
 
-// Récupération du port à utiliser, en utilisant 3000 par défaut s'il n'est pas défini dans les variables d'environnement
-const port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT || '4000');
 app.set('port', port); // Configuration de l'application avec le port choisi
 
 // Gestionnaire d'erreurs en cas de problème lors du démarrage du serveur

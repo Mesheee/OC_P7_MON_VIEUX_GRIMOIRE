@@ -2,10 +2,9 @@
 const express = require('express');
 const mongoose = require('mongoose'); 
 const app = express(); 
-const bookRoutes = require('./routes/books'); // Importation des routes pour les livres
+const booksRoutes = require('./routes/book'); // Importation des routes pour les livres
 const userRoutes = require('./routes/user'); // Importation des routes pour les utilisateurs
-require('path'); // Module Node.js pour gérer les chemins de fichiers
-
+const path = require('path');
 require('dotenv').config(); // Charger les variables d'environnement depuis le fichier .env
 
 // Connexion à la base de données
@@ -25,6 +24,8 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/auth', userRoutes);
+app.use('/api/books', booksRoutes);
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 
 module.exports = app; 
