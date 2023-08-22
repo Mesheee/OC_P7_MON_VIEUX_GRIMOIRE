@@ -4,7 +4,6 @@ const app = require('./app');
 // Fonction pour normaliser le port en un nombre ou une valeur false si invalide
 const normalizePort = val => {
   const port = parseInt(val, 10);
-
   if (isNaN(port)) {
     return val;
   }
@@ -40,9 +39,8 @@ const errorHandler = error => {
 
 const server = http.createServer(app); // Création du serveur HTTP en utilisant notre application (express)
 
-server.on('error', errorHandler); // Écoute des erreurs du serveur
+server.on('error', errorHandler); 
 
-// Une fois que le serveur écoute, on récupère l'adresse sur laquelle il écoute
 server.on('listening', () => {
   const address = server.address();
   const bind = typeof address === 'string' ? 'pipe ' + address : 'port ' + port;

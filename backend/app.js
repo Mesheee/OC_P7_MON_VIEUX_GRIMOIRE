@@ -1,4 +1,3 @@
-// Importation des modules et des packages requis
 const express = require('express');
 const mongoose = require('mongoose'); 
 const app = express(); 

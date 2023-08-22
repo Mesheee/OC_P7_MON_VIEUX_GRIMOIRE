@@ -5,7 +5,7 @@ const fs = require("fs");  // Module 'fs' pour gérer les opérations de fichier
 exports.getAllBooks = (req, res, next) => {
   Book.find()
     .then((books) => {
-      res.status(200).json(books);  // Répondre avec la liste des livres au format JSON
+      res.status(200).json(books); 
     })
     .catch((error) => {
       res.status(400).json({
@@ -14,7 +14,7 @@ exports.getAllBooks = (req, res, next) => {
     });
 };
 
-// Récupérer les livres les mieux notés (triés par note moyenne décroissante, limités à 3)
+// Récupérer les livres les mieux notés (limités à 3)
 exports.getBestrating = (req, res, next) => {
   Book.find({})
     .sort({ averageRating: -1 })
@@ -45,7 +45,7 @@ exports.getOneBook = (req, res, next) => {
 // Créer un nouveau livre
 exports.createBook = (req, res, next) => {
   const bookObject = JSON.parse(req.body.book);  // Analyser les données JSON du livre
-  delete bookObject._id;  // Supprimer les clés inutiles
+  delete bookObject._id; 
   delete bookObject._userId;
   const book = new Book({
     ...bookObject,
@@ -62,7 +62,7 @@ exports.createBook = (req, res, next) => {
     });
 };
 
-// Ajouter une note (évaluation) à un livre
+// Ajouter une note à un livre
 exports.createRating = (req, res, next) => {
   Book.findOne({ _id: req.params.id })
     .then((book) => {
@@ -73,7 +73,6 @@ exports.createRating = (req, res, next) => {
       if (existingRating) {
         return res.status(400).json({ error: "Note déjà ajoutée auparavant." });
       } else {
-        // Ajouter une nouvelle évaluation au livre
         book.ratings.push({
           userId: req.auth.userId,
           grade: req.body.rating,
